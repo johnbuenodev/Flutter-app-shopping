@@ -5,6 +5,18 @@ import 'package:flutter/src/widgets/placeholder.dart';
 class ProductPage extends StatelessWidget {
   //const ProductPage({super.key});
 
+  final String imageValue;
+  final String titleValue;
+  final String descriptionValue;
+  final double priceValue;
+
+  ProductPage({
+    required this.imageValue,
+    required this.titleValue,
+    required this.descriptionValue,
+    required this.priceValue
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +32,7 @@ class ProductPage extends StatelessWidget {
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
                   background: Image.asset(
-                    "assets/product-1.png",
+                    imageValue,
                     width: double.infinity,
                     fit: BoxFit.fitWidth,
                   ),
@@ -33,7 +45,7 @@ class ProductPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 10, left: 10, right: 10),
                 child: Text(
-                  "Dry Fit Long Sleeve",
+                  titleValue,
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
@@ -42,12 +54,12 @@ class ProductPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text("By Nike"),
+                child: Text(titleValue),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  "Details",
+                  priceValue.toString(), // priceValue.toString()
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
@@ -55,7 +67,7 @@ class ProductPage extends StatelessWidget {
               ),
               Padding(padding: EdgeInsets.all(10),
               child: Text(
-                "Nike Dri-FIT is a polyester fabric designed to help you keep dry so you can more comfortably work harder, longer."
+                descriptionValue
               ),)
             ],
           )),

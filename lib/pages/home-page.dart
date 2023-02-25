@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:shopping/pages/cart-page.dart';
 import 'package:shopping/pages/product-page.dart';
+import 'package:shopping/widgets/category-item-widget.dart';
+import 'package:shopping/widgets/category-list-widget.dart';
+import 'package:shopping/widgets/product-card-home-widget.dart';
+import 'package:shopping/widgets/product-list-home-widget.dart';
+import 'package:shopping/widgets/search-widget.dart';
 
 class HomePage extends StatelessWidget {
   //const HomePage({super.key});
@@ -21,7 +27,7 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 60,
               ),
-              search(),
+              SearchWidget(),
               SizedBox(
                 height: 30,
               ),
@@ -34,7 +40,7 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 height: 90,
-                child: categoryList(),
+                child: CategoryList(),
               ),
               SizedBox(
                 height: 30,
@@ -75,7 +81,7 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 height: 350,
-                child: productList(context),
+                child: ProductList(scrollDirection: Axis.horizontal),
               ),
             ],
           ),
@@ -83,163 +89,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget search() {
-  return Container(
-    //color: Colors.black.withOpacity(0.1),
-    height: 60,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(30),
-      color: Colors.black.withOpacity(0.1),
-    ),
-    child: Padding(
-      padding: EdgeInsets.only(top: 16, bottom: 16, left: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        //crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Icon(Icons.search),
-          Container(
-            width: 300, //add medida de largura
-            padding: EdgeInsets.only(left: 16),
-            child: TextFormField(
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                labelText: "Search",
-                labelStyle: TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 16,
-                ),
-              ),
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.blue,
-              ),
-              onTap: () {},
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-Widget categoryList() {
-  return Container(
-    child: ListView(
-      scrollDirection: Axis.horizontal,
-      children: [
-        categoryItem(),
-        categoryItem(),
-        categoryItem(),
-        categoryItem(),
-        categoryItem(),
-        categoryItem(),
-      ],
-    ),
-  );
-}
-
-Widget categoryItem() {
-  return Container(
-    width: 70,
-    height: 70,
-    margin: EdgeInsets.all(10),
-    padding: EdgeInsets.all(10),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black12,
-          offset: Offset(1, 1),
-          blurRadius: 5,
-          spreadRadius: 2,
-        )
-      ],
-      borderRadius: BorderRadius.all(
-        Radius.circular(64),
-      ),
-    ),
-    child: Image.asset("assets/Icon_Devices.png"),
-  );
-}
-
-Widget productList(BuildContext context) {
-  return Container(
-    child: ListView(
-      scrollDirection: Axis.horizontal,
-      children: [
-        productCard(context),
-        productCard(context),
-        productCard(context),
-        productCard(context),
-      ],
-    ),
-  );
-}
-
-Widget productCard(BuildContext context) {
-  return Container(
-    padding: EdgeInsets.all(10),
-    margin: EdgeInsets.all(5),
-    width: 170,
-    color: Colors.black12,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context, //??
-              MaterialPageRoute(builder: (context) => ProductPage()),
-            );
-          },
-          child: Image.asset(
-            "assets/product-1.png",
-            width: 170,
-            height: 170,
-            fit: BoxFit.cover, //utilizado para não distorcer a imagem
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Container(
-          height: 60,
-          child: Text(
-            "Titulo do Produto",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-            //style: ,
-          ),
-        ),
-        SizedBox(
-          height: 6,
-        ),
-        Text(
-          "Marca: ",
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        SizedBox(
-          height: 6,
-        ),
-        Text(
-          "\$ 200",
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF00C569),
-          ),
-        )
-      ],
-    ),
-  );
 }
